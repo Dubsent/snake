@@ -10,34 +10,17 @@ namespace snake
     {
         static void Main(string[] args)
         {
-            int sym1 = 33;
-            int sym2 = 42;
-            int point_count = 4;
 
-            Random rnd = new Random();
+            Point p1 = new Point(4, 3 , '*');
+            p1.Draw();
+            Point p2 = new Point(7, 6, '#');
+            p2.Draw();
 
-            List<int> numList = new List<int>();
-            for (int i = 0; i < point_count * 2; i++)
-            {
-                numList.Add(rnd.Next(0, 10));
-            }
+            HorizontalLine horline = new HorizontalLine(5, 10, 8, '+');
+            horline.DrawLine();
 
-            List<char> charList = new List<char>();
-            for (int i = sym1; i <= sym2; i++)
-            {
-                charList.Add((char)i);
-            }
-
-            List<Point> pList = new List<Point>();
-            for (int i = 0; i < point_count; i++)
-            {
-                pList.Add(new Point(numList[i], numList[i+1], charList[rnd.Next(i, charList.Count)]));
-            }
-
-            foreach (Point p in pList) 
-            { 
-                p.Draw();
-            }
+            VerticalLine verline = new VerticalLine(8, 16, 16, '^');
+            verline.DrawLine();
 
             Console.ReadLine();
         }
