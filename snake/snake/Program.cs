@@ -10,37 +10,37 @@ namespace snake
     {
         static void Main(string[] args)
         {
-            Point p1 = new Point(1, 3, '*');
-            p1.Draw();
+            int sym1 = 33;
+            int sym2 = 42;
+            int point_count = 4;
 
-            Point p2 = new Point(4, 5, '+');
-            p2.Draw();
+            Random rnd = new Random();
 
-            Console.WriteLine("\n\n");
-            Console.WriteLine($"p1 = {p1.x}, {p1.y}, {p1.sym}");
-            Console.WriteLine($"p2 = {p2.x}, {p2.y}, {p2.sym}");
+            List<int> numList = new List<int>();
+            for (int i = 0; i < point_count * 2; i++)
+            {
+                numList.Add(rnd.Next(0, 10));
+            }
 
-            p1 = p2;
-            
-            Console.WriteLine("\np1 = p2");
-            Console.WriteLine($"p1 = {p1.x}, {p1.y}, {p1.sym}");
-            Console.WriteLine($"p2 = {p2.x}, {p2.y}, {p2.sym}");
+            List<char> charList = new List<char>();
+            for (int i = sym1; i <= sym2; i++)
+            {
+                charList.Add((char)i);
+            }
 
-            p2.x++;
-            p2.y++;
-            Console.WriteLine($"p2++");
-            Console.WriteLine($"p1 = {p1.x}, {p1.y}, {p1.sym}");
-            Console.WriteLine($"p2 = {p2.x}, {p2.y}, {p2.sym}");
+            List<Point> pList = new List<Point>();
+            for (int i = 0; i < point_count; i++)
+            {
+                pList.Add(new Point(numList[i], numList[i+1], charList[rnd.Next(i, charList.Count)]));
+            }
 
-            Reset(p2);
+            foreach (Point p in pList) 
+            { 
+                p.Draw();
+            }
 
             Console.ReadLine();
         }
 
-        private static void Reset(Point p)
-        {
-            p = new Point();
-            Console.WriteLine($"p = {p.x}, {p.y}, {p.sym}");
-        }
     }
 }
