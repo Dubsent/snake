@@ -10,17 +10,18 @@ namespace snake
     {
         static void Main(string[] args)
         {
+            Console.SetWindowSize(1, 1);
+            Console.SetBufferSize(80, 25);
+            Console.SetWindowSize(80, 25);
 
-            Point p1 = new Point(4, 3 , '*');
-            p1.Draw();
-            Point p2 = new Point(7, 6, '#');
-            p2.Draw();
-
-            HorizontalLine horline = new HorizontalLine(5, 10, 8, '+');
-            horline.DrawLine();
-
-            VerticalLine verline = new VerticalLine(8, 16, 16, '^');
-            verline.DrawLine();
+            HorizontalLine topline = new HorizontalLine(0, 78, 0, '*');
+            HorizontalLine bottomline = new HorizontalLine(0, 78, 24, '*');
+            VerticalLine leftline = new VerticalLine(0, 24, 0, '*');
+            VerticalLine rightline = new VerticalLine(0, 24, 78, '*');
+            topline.DrawLine();
+            bottomline.DrawLine();
+            leftline.DrawLine();
+            rightline.DrawLine();
 
             Console.ReadLine();
         }
