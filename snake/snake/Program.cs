@@ -24,18 +24,35 @@ namespace snake
             leftline.DrawLine();
             rightline.DrawLine();
 
-            Point p = new Point(5, 10, '*');
+            Point p = new Point(5, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             
+            FoodCreator foodCreator = new FoodCreator(80, 25, '$');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
+
+
             while(true)
             {
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                    snake.Move();
+                }
+                else
+                {
+                    snake.Move();
+                }
+                
+                Thread.Sleep(100);
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.Handle(key.Key);
                 }
-                Thread.Sleep(100);
-                snake.Move();
+                
             }
 
             //Console.ReadLine();
