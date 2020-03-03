@@ -1,33 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace snake
 {
     class Program
     {
+        const int MINXY = 0;
+        const char HVLINE = '*';
+        const int WIDTH = 100;
+        const int HEIGHT = 40;
         static void Main(string[] args)
         {
-            Console.SetWindowSize(1, 1);
-            Console.SetBufferSize(80, 25);
-            Console.SetWindowSize(80, 25);
+            //Console.SetWindowSize(1, 1);
+            Console.SetWindowSize(WIDTH + 2, HEIGHT + 1);
+            Console.SetBufferSize(WIDTH + 2, HEIGHT + 1);
+            
 
-            HorizontalLine topline = new HorizontalLine(0, 78, 0, '*');
-            HorizontalLine bottomline = new HorizontalLine(0, 78, 24, '*');
-            VerticalLine leftline = new VerticalLine(0, 24, 0, '*');
-            VerticalLine rightline = new VerticalLine(0, 24, 78, '*');
+            HorizontalLine topline = new HorizontalLine(MINXY, WIDTH, MINXY, HVLINE);
+            HorizontalLine bottomline = new HorizontalLine(MINXY, WIDTH, HEIGHT, HVLINE);
+            VerticalLine leftline = new VerticalLine(MINXY, HEIGHT, MINXY, HVLINE);
+            VerticalLine rightline = new VerticalLine(MINXY, HEIGHT, WIDTH, HVLINE);
             topline.DrawLine();
             bottomline.DrawLine();
             leftline.DrawLine();
             rightline.DrawLine();
 
-            Point p = new Point(5, 5, '*');
+            Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
-            
-            FoodCreator foodCreator = new FoodCreator(80, 25, '$');
+            snake.DrawLine();
+
+            FoodCreator foodCreator = new FoodCreator(WIDTH, HEIGHT, '$');
             Point food = foodCreator.CreateFood();
             food.Draw();
 
@@ -38,7 +41,6 @@ namespace snake
                 {
                     food = foodCreator.CreateFood();
                     food.Draw();
-                    snake.Move();
                 }
                 else
                 {

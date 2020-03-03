@@ -14,10 +14,10 @@ namespace snake
 
         Random random = new Random();
 
-        public FoodCreator(int mapHeight, int mapWidth, char sym)
+        public FoodCreator(int mapWidth, int mapHeight, char sym)
         {
-            this.mapHeight = mapHeight;
             this.mapWidth = mapWidth;
+            this.mapHeight = mapHeight;
             this.sym = sym;
         }
 

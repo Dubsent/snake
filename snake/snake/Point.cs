@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace snake
 {
@@ -13,13 +9,7 @@ namespace snake
 
         public Point()
         {
-        }
 
-        public Point(int _x, int _y, char _sym)
-        {
-            x = _x;
-            y = _y;
-            sym = _sym;
         }
 
         public Point(Point p)
@@ -27,6 +17,13 @@ namespace snake
             x = p.x;
             y = p.y;
             sym = p.sym;
+        }
+
+        public Point(int x, int y, char sym)
+        {
+            this.x = x;
+            this.y = y;
+            this.sym = sym;
         }
 
         public void Move(int offset, Direction direction)
@@ -51,7 +48,7 @@ namespace snake
 
         internal void Clear()
         {
-            sym = ' ';
+            this.sym = ' ';
             Draw();
         }
 
